@@ -2,7 +2,7 @@ import pandas as pd
 import pygal
 from pygal.style import DefaultStyle
 
-file_paths = {
+files = {
     "2015": 'C:\\comp sci\\Artefact\\CSVs\\new_2015.csv',
     "2016": 'C:\\comp sci\\Artefact\\CSVs\\new_2016.csv',
     "2017": 'C:\\comp sci\\Artefact\\CSVs\\new_2017.csv',
@@ -11,7 +11,7 @@ file_paths = {
 }
 
 # Loop through each year and generate separate charts
-for year, file_path in file_paths.items():
+for year, file_path in files.items():
     # Load CSV file
     df = pd.read_csv(file_path)
 

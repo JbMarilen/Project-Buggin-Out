@@ -4,7 +4,7 @@ from pygal.style import LightColorizedStyle
 
 # List of dataset filenames
 years = [2015, 2016, 2017, 2018, 2019]
-file_paths = [f"C:\\comp sci\\Artefact\\CSVs\\new_{year}.csv" for year in years]
+files = [f"C:\\comp sci\\Artefact\\CSVs\\new_{year}.csv" for year in years]
 
 # Factors to plot against Happiness Score
 factors = {
@@ -20,7 +20,7 @@ for factor, output_file in factors.items():
                              title=f"{factor} vs. Happiness Score (2015-2019)",
                              x_title=factor, y_title="Happiness Score")
         
-    for year, file_path in zip(years, file_paths):
+    for year, file_path in zip(years, files):
         df = pd.read_csv(file_path)  # Load dataset
         scatter_plot.add(f"{year}", [(row[factor], row["Happiness Score"]) for _, row in df.iterrows()])
 

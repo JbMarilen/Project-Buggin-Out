@@ -14,7 +14,6 @@ def find_top_countries(csv_files):
     top_3_countries = country_counts.most_common(3)
     return top_3_countries
 
-# Example usage
 files = [
     'C:\\comp sci\\Artefact\\CSVs\\new_2015.csv',
     'C:\\comp sci\\Artefact\\CSVs\\new_2016.csv',

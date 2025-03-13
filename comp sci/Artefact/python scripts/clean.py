@@ -1,3 +1,4 @@
+# This script satisfies Basic Requirement 1: Collect and prepare the data.
 import pandas as pd
 
 file_2015 = "C:\\comp sci\\Artefact\CSVs\\2015.csv"

@@ -156,7 +156,7 @@ function updateCharts() {
 
 // Function to update a pie chart
 function updatePieChart(chartId, data) {
-    const chart = Chart.getChart(chartId);
+    const chart = Chart.getChart(chartId); 
     const counts = data.reduce((acc, value) => {
         acc[value] = (acc[value] || 0) + 1;
         return acc;

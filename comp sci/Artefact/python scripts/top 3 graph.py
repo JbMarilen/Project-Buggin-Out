@@ -2,11 +2,22 @@ import os
 import csv
 import pygal
 
-def extract_country_data(file_paths, country_name):
+def extract_country_data(files, country_name):
+    """
+    Extracts data for a specific country from multiple CSV files.
+    
+    Args:
+        file_paths (list): List of file paths to CSV files.
+        country_name (str): Name of the country to extract data for.
+    
+    Returns:
+        tuple: A dictionary with years as keys and data as values, and a sorted list of columns.
+    """
     country_data = {}
     columns = set()
     
-    for file_path in file_paths:
+    for file_path in files:
+        # Extract the year from the file name
         year = os.path.splitext(os.path.basename(file_path))[0].split('_')[-1]
         
         with open(file_path, newline='', encoding='utf-8') as csvfile:
@@ -23,6 +34,14 @@ def extract_country_data(file_paths, country_name):
     return dict(sorted(country_data.items())), sorted(columns)
 
 def create_line_graph(data, columns, country_name):
+    """
+    Creates a line graph for the given data and saves it as an SVG file.
+    
+    Args:
+        data (dict): Dictionary with years as keys and data as values.
+        columns (list): List of columns to include in the graph.
+        country_name (str): Name of the country for the graph title and file name.
+    """
     line_chart = pygal.Line()
     line_chart.title = country_name
     line_chart.x_labels = list(map(str, data.keys()))
@@ -36,8 +55,8 @@ def create_line_graph(data, columns, country_name):
     file_name = f'{country_name.lower()}_graph.svg'
     line_chart.render_to_file(file_name)
 
-# List of CSV file paths
-csv_files = [
+
+files = [
     'C:\\comp sci\\Artefact\\CSVs\\new_2015.csv',
     'C:\\comp sci\\Artefact\\CSVs\\new_2016.csv',
     'C:\\comp sci\\Artefact\\CSVs\\new_2017.csv',
@@ -47,5 +66,5 @@ csv_files = [
 
 # Extract and create graphs for Denmark, Iceland, and Norway
 for country in ['Denmark', 'Iceland', 'Norway']:
-    country_data, columns = extract_country_data(csv_files, country)
+    country_data, columns = extract_country_data(files, country)
     create_line_graph(country_data, columns, country)
