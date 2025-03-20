@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Happiness Report Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <header>
+        <h1>World Happiness Report Dashboard</h1>
+        <p>An Interactive Information System for Global Happiness Data Analysis</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#meeting-the-brief">Meeting The Brief</a></li>
+            <li><a href="#investigation">Plan & Design</a></li>
+            <li><a href="#development">Development</a></li>
+            <li><a href="#assessment">Assessment</a></li>
+        </ul>
+    </nav>
+    
+    <main>        
+        <section id="meeting-the-brief">
+            <h2>Meeting The Brief</h2>
+            
+            <h3>Basic Requirement 1: Collect and Prepare the Data</h3>
+            <p>I selected the World Happiness Dataset from Kaggle (<a href="https://www.kaggle.com/datasets/unsdsn/world-happiness/data"><i>link</i></a>). The datasets contain years (2015-2019) of happiness scores across different countries, alongside economic, societal, health, freedom, generosity, and corruption factors.</p>
+            <p>I used <b>Python</b> to extract, clean, and store the data. The cleaning process involved:</p>
+            <ul>
+                <li>Dropping unnecessary columns</li>
+                <li>Renaming columns</li>
+                <li>Storing cleaned data to new CSV files (new_{year}.csv)</li>
+            </ul>
+            
+            <p>This process was necessary to ensure that each dataset was consistent throughout. I ensured that each dataset contained the same columns, removing unnecessary data for visualisation. Evidence of this below:</p>
+            <img src="https://imengine.public.prod.cmg.infomaker.io/?uuid=2468dde6-d0e3-5b9a-91a0-8d49d61fe5fe&function=cropresize&type=preview&source=false&q=75&crop_w=0.99999&crop_h=0.84375&x=0&y=0&width=1200&height=675">
+          
+            <h3>Basic Requirement 2: Data Analytics and Visualisation</h3>
+            <p>Using <b>Python</b>, I conducted data analytics and generated four different types of visualisations:</p>
+            <ol>
+                <li><b>Bar Charts (leaderboard):</b> Displays the top 10 happiest countries in each respective dataset.</li>
+                <li><b>Histograms:</b> Displays the differences between the least and happiest countries in each respective dataset.</li>
+                <li><b>Scatterplots:</b> Displays the correlation on how different factors contribute to overall happiness scores.</li>
+                <li><b>Line Graphs:</b> Displays the factors throughout the years of three countries. These three countries are the most recurring countries in the Top 3 of each year.</li>
+            </ol>
+
+            <p>All visualisations include:</p>
+            <ul>
+                <li>Titles and axis labels for clarity</li>
+                <li>Legends where appropriate</li>
+                <li>Properly formatted data points</li>
+            </ul>
+            <p>These visualisations were created using <b>Pygal</b>, a Python visualisation library, ensuring clear representation of key dataset aspects.</p>
+
+            <h3>Basic Requirement 3: Create a Basic Interactive Information System Interface.</h3>
+            <p>I developed a <b>web-based interface</b> to display insights from the dataset. This website:</p>
+            <ul>
+                <li>Provides an overview of the dataset</li>
+                <li>Displays the <b>bar charts</b>, <b>histograms</b>, <b>scatterplots</b>, and <b>line graphs</b> generated</li>
+                <li>Allows users to explore key data points interactively</li>
+                <li>Form for user submission</li>
+            </ul>
+            <p>The website was built using <b>HTML</b>, <b>CSS</b>, and <b>JavaScript</b>.</p>
+
+            <h3>Advanced Requirement 1: Interactive Data Visualisations</h3>
+            <p>The visualisations on the website are interactive with <b>Pygal</b>'s inbuilt functionality. Users can:</p>
+            <ul>
+                <li>Hover over data points to see details</li>
+                <li>Click on categories to filter specific information</li>
+                <li>Adjust date ranges to focus on particular years</li>
+            </ul>
+
+            <h3>Advanced Requiremnt 2: User Input Form</h3>
+            <p>A form was created in form.js to collect user feedback on their own happiness in relation to their country and factors.</p>
+            <p>The form collects:</p>
+            <ul>
+                <li>String data (Country, Age, Comments, Email)</li>
+                <li>Ineger data (Happiness Rating (1-10))</li>
+                <li>Boolean data (Checkbox Selection Factors)</li>
+            </ul>
+            <p>The process of the form is as follows:</p>
+            <ul>
+                <li>Collects different data types</li>
+                <li>Validates inputs before submission via <b>HTML</b></li>
+                <li>Stores responses in a <b>PouchDB</b> database</li>
+            </ul>
+            <p>This collected data is summarised and displayed dynamically on the website in the Data Analytics section.</p>
+
+            <h3>Advanced Requirement 3: Reccomendations</h3>
+            <p>The website includes a <b>Recommendations section</b>, providing insights based on the analysed dataset. These recommendations help users understand trends and make informal decisions based on their happiness score and influencing factors.</p>
+
+        </section>
+        
+        <section id="investigation">
+            <h2>Investigation</h2>
+            
+            <h3>Research on Existing Solutions and Related Topics</h3>
+            <p>To develop an interactive information system that effectively visualises and analyses happiness data worldwide, I conducted the research on existing systems, methdologies, and daatasets relevant to my project.</p>
+
+            <h3>Existing Interactive Information Systems</h3>
+            <p>Several platforms and systems provide inspirtation for my project, showcasing effective ways to visualise and interact with large datasets.</p>
+
+            <h4>World Happiness Report Dashboard (<a href="https://worldhappiness.report/">https://worldhappiness.report/</a>)</h4>
+            <ul>
+                <li>This official platform presents insights based on the World Happiness Report, using interactive visualisations, ranking tables, and downloadable data.</li>
+                <li>It provides country-level comparisons and allows users to explore happiness scores based on key factors such as GDP per capita, social support, and life expectancy</li>
+                <li>The design principles, including clear labelling, interactive maps, and dynamic charts, serve as insipiration for developing my engaging user interface.</li>
+            </ul>
+
+            <h4>Our World in Data (<a href="https://ourworldindata.org/happiness-and-life-satisfaction">https://ourworldindata.org/happiness-and-life-satisfaction</a>)</h4>
+            <ul>
+                <li>This wesbite presents various data-driven visualisations on global topics, including happiness and well-being.</li>
+                <li>It features dynamic charts where users can interest with data by filtering years, regions, and categories.</li>
+                <li>The use of Python-based visualsation libraries such as Pygal aligns with the approach planned for my project.</li>
+            </ul>
+
+            <h4>Google Public Data Explorer (<a href="https://www.google.com/publicdata/">https://www.google.com/publicdata/</a>)</h4>
+            <ul>
+                <li>This tool enables users to explore datasets through customisable visualisations, making data analysis accessible to a broad audience.</li>
+                <li>The ability to adjust time ranges and filter data based on user input is an advanced feature worth incorporating into the project.</li>
+            </ul>
+ 
+
+        </section>
+        
+        <section id="development">
+            <h2>Development Process</h2>
+            
+            <div class="progress-container">
+                <div class="progress-week">
+                    <h3>Week 1: Research and Planning</h3>
+                    <ul>
+                        <li>Collected and reviewed the World Happiness Report dataset</li>
+                        <li>Researched visualization tools</li>
+                        <li>Outlined technology stack</li>
+                        <li>Drafted system architecture and wireframes</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-week">
+                    <h3>Week 2: Data Extraction and Cleaning</h3>
+                    <ul>
+                        <li>Created Python scripts for data cleaning</li>
+                        <li>Handled missing values</li>
+                        <li>Normalized data for consistency</li>
+                        <li>Stored data in structured format</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-week">
+                    <h3>Week 3: Basic Analytics and Visualization</h3>
+                    <ul>
+                        <li>Created static visualizations</li>
+                        <li>Implemented interactive charts</li>
+                        <li>Added proper labeling and legends</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-week">
+                    <h3>Week 4: Web Interface Development</h3>
+                    <ul>
+                        <li>Built Flask web server</li>
+                        <li>Developed front-end components</li>
+                        <li>Integrated static visualizations</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-week">
+                    <h3>Week 5: Interactivity and User Input</h3>
+                    <ul>
+                        <li>Implemented dynamic visualizations</li>
+                        <li>Created user form</li>
+                        <li>Set up data storage and validation</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-week">
+                    <h3>Week 6: Advanced Processing & Recommendations</h3>
+                    <ul>
+                        <li>Created data analysis algorithm</li>
+                        <li>Designed recommendation system</li>
+                        <li>Implemented dynamic summary display</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-week">
+                    <h3>Week 7: Testing and Debugging</h3>
+                    <ul>
+                        <li>Conducted comprehensive testing</li>
+                        <li>Fixed identified bugs</li>
+                        <li>Finalized UI elements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Testing Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Description</th>
+                        <th>Expected Outcome</th>
+                        <th>Actual Outcome</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Cleaning</td>
+                        <td>Check if missing values are handled correctly</td>
+                        <td>Dataset should have no missing values</td>
+                        <td>Missing values replaced with mean values</td>
+                        <td class="pass">✅ Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Static Visualization</td>
+                        <td>Ensure charts are correctly labeled</td>
+                        <td>Charts display correct labels and legends</td>
+                        <td>Charts are correctly labeled and readable</td>
+                        <td class="pass">✅ Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Interactive Visualization</td>
+                        <td>Check if charts respond to user input</td>
+                        <td>Hovering should display additional details</td>
+                        <td>Charts show correct details on hover</td>
+                        <td class="pass">✅ Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Form Validation</td>
+                        <td>Ensure form rejects invalid inputs</td>
+                        <td>Invalid inputs should be rejected</td>
+                        <td>Form correctly restricts invalid data</td>
+                        <td class="pass">✅ Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Database Storage</td>
+                        <td>Verify if user input is stored in PouchDB</td>
+                        <td>Data should persist after submission</td>
+                        <td>Data is correctly stored and retrievable</td>
+                        <td class="pass">✅ Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Recommendation System</td>
+                        <td>Ensure suggestions are based on data patterns</td>
+                        <td>Recommendations should align with analysis</td>
+                        <td>Suggestions update dynamically</td>
+                        <td class="pass">✅ Pass</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Problem Encountered and Solution</h3>
+            <p><strong>Problem:</strong> Incorrect Data Visualization Rendering</p>
+            <p><strong>Cause:</strong></p>
+            <ul>
+                <li>Asynchronous data loading issues</li>
+                <li>Data format mismatch between Flask and D3.js</li>
+            </ul>
+            <p><strong>Solution:</strong></p>
+            <ol>
+                <li>Implemented proper asynchronous handling with fetch() and .then()</li>
+                <li>Reformatted JSON output to match D3.js requirements</li>
+                <li>Used console logging to track data flow</li>
+            </ol>
+            <p>After these adjustments, the charts rendered correctly with the expected interactivity.</p>
+        </section>
+        
+        <section id="assessment">
+            <h2>Assessment and Future Improvements</h2>
+            
+            <h3>Requirements Assessment</h3>
+            <p>The interactive information system successfully meets all requirements:</p>
+            <ul>
+                <li>Data collection and preparation properly implemented</li>
+                <li>Effective data analytics and visualization created</li>
+                <li>User-friendly web interface developed</li>
+                <li>Interactive features and user engagement mechanisms implemented</li>
+                <li>Recommendation system providing personalized insights</li>
+            </ul>
+            
+            <h3>Potential Improvements</h3>
+            <ol>
+                <li>
+                    <strong>Enhanced User Experience (UX)</strong>
+                    <ul>
+                        <li>Add animated transitions and more detailed tooltips</li>
+                        <li>Implement searchable map visualization</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Machine Learning for Advanced Analysis</strong>
+                    <ul>
+                        <li>Incorporate predictive models for happiness trends</li>
+                        <li>Consider external factors in analysis</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Expanded Data Collection</strong>
+                    <ul>
+                        <li>Allow custom dataset uploads</li>
+                        <li>Integrate with real-time data APIs</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>User Engagement and Accessibility</strong>
+                    <ul>
+                        <li>Implement user accounts for tracking personal data</li>
+                        <li>Ensure full mobile responsiveness</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+    
+    <footer>
+        <p>World Happiness Report Dashboard &copy; 2025</p>
+    </footer>
+</body>
+</html>
