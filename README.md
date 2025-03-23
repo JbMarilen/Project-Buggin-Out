@@ -1,2 +1,2 @@
-# LCCS25
-comp sci
+# buggin' out
+backdoor baddies member
