@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Happiness Rankings</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/fullscreen.js" ></script>
+</head>
+<body>
+    <header>
+        <h1>World Happiness Report</h1>
+        <p class="subtitle">Research and Analysis of Global Happiness: 2015-2019</p>
+    </header>
+    
+    <section>
+        <h2>Happiness Leaderboard</h2>
+        <p>Global rankings of countries based on their happiness scores.</p>
+        
+        <div class="data-grid">
+            <div class="data-card" data-id="leaderboard1" data-title="Top 10 Countries Ranking" data-desc="Visual representation of the top 10 happiest countries according to the World Happiness Report.">
+                <object data="SVGs/happiness_leaderboard_2015.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/happiness_leaderboard_2015.svg" alt="Happiness Ranking SVG 1" width="200" height="200">
+                </object>
+                <p class="svg-text">2015 Leaderboard</p>
+            </div>
+            
+            <div class="data-card" data-id="leaderboard2" data-title="Regional Comparison" data-desc="Comparison of happiness scores across different geographical regions of the world.">
+                <object data="SVGs/happiness_leaderboard_2016.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/happiness_leaderboard_2016.svg" alt="Happiness Ranking SVG 2" width="200" height="200">
+                </object>
+                <p class="svg-text">2016 Leaderboard</p>
+            </div>
+            
+            <div class="data-card" data-id="leaderboard3" data-title="Year-over-Year Changes" data-desc="Analysis of how country rankings have changed from 2015 to 2019.">
+                <object data="SVGs/happiness_leaderboard_2017.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/happiness_leaderboard_2017.svg" alt="Happiness Ranking SVG 3" width="200" height="200">
+                </object>
+                <p class="svg-text">2017 Leaderboard</p>
+            </div>
+            
+            <div class="data-card" data-id="leaderboard4" data-title="Score Distribution" data-desc="Distribution of happiness scores across all countries in the report.">
+                <object data="SVGs/happiness_leaderboard_2018.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/happiness_leaderboard_2018.svg" alt="Happiness Ranking SVG 4" width="200" height="200">
+                </object>
+                <p class="svg-text">2018 Leaderboard</p>
+            </div>
+            
+            <div class="data-card" data-id="leaderboard5" data-title="Continental Breakdown" data-desc="Comparison of happiness scores across different continents.">
+                <object data="SVGs/happiness_leaderboard_2019.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/happiness_leaderboard_2019.svg" alt="Happiness Ranking SVG 5" width="200" height="200">
+                </object>
+                <p class="svg-text">2019 Leaderboard</p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Happiest vs Least Happiest</h2>
+        <p>Comparison between the most and least happy nations in the world.</p>
+        
+        <div class="data-grid">
+            <div class="data-card" data-id="comparison1" data-title="Score Gap Analysis" data-desc="Analysis of the gap between the happiest and least happy countries.">
+                <object data="SVGs/histogram_2015.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/histogram_2015.svg" alt="Comparison SVG 1" width="200" height="200">
+                </object>
+                <p class="svg-text">Switzerland Vs. Togo (2015)</p>
+            </div>
+            
+            <div class="data-card" data-id="comparison2" data-title="Factor Comparison" data-desc="Comparison of different happiness factors between top and bottom ranked countries.">
+                <object data="SVGs/histogram_2016.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/histogram_2016.svg" alt="Comparison SVG 2" width="200" height="200">
+                </object>
+                <p class="svg-text">Denmark Vs. Burundi (2016)</p>
+            </div>
+            
+            <div class="data-card" data-id="comparison3" data-title="Quality of Life Metrics" data-desc="Comparison of quality of life indicators between happiest and least happy nations.">
+                <object data="SVGs/histogram_2017.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/histogram_2017.svg" alt="Comparison SVG 3" width="200" height="200">
+                </object>
+                <p class="svg-text">Norway Vs. Central Africa Republic (2017)</p>
+            </div>
+            
+            <div class="data-card" data-id="comparison4" data-title="Economic Indicators" data-desc="Comparison of economic factors between happiest and least happy countries.">
+                <object data="SVGs/histogram_2018.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/histogram_2018.svg" alt="Comparison SVG 4" width="200" height="200">
+                </object>
+                <p class="svg-text">Finland Vs. Burundi (2018)</p>
+            </div>
+            
+            <div class="data-card" data-id="comparison5" data-title="Cultural Indicators" data-desc="Analysis of cultural factors that may influence happiness scores.">
+                <object data="SVGs/histogram_2019.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/histogram_2019.svg" alt="Comparison SVG 5" width="200" height="200">
+                </object>
+                <p class="svg-text">Finland Vs. South Sudan (2019)</p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Happiness Score in Relation to Factors</h2>
+        <p>Analysis of how different factors contribute to overall happiness scores.</p>
+        
+        <div class="data-grid">
+            <div class="data-card" data-id="factors1" data-title="GDP per Capita Impact" data-desc="Correlation between GDP per capita and happiness scores across countries.">
+                <object data="SVGs/scatter_freedom_happiness.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/scatter_freedom_happiness.svg" alt="Factors SVG 1" width="200" height="200">
+                </object>
+                <p class="svg-text">Freedom</p>
+            </div>
+            
+            <div class="data-card" data-id="factors2" data-title="Social Support Correlation" data-desc="How social support networks correlate with overall happiness scores.">
+                <object data="SVGs/scatter_gdp_happiness.svg"  type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/scatter_gdp_happiness.svg"  alt="Factors SVG 2" width="200" height="200">
+                </object>
+                <p class="svg-text">Economy (GDP per Capita)</p>
+            </div>
+            
+            <div class="data-card" data-id="factors3" data-title="Health & Life Expectancy" data-desc="Relationship between health metrics, life expectancy, and happiness scores.">
+                <object data="SVGs/scatter_generosity_happiness.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/scatter_generosity_happiness.svg" alt="Factors SVG 3" width="200" height="200">
+                </object>
+                <p class="svg-text">Generosity</p>
+            </div>
+            
+            <div class="data-card" data-id="factors4" data-title="Freedom & Trust Factors" data-desc="Impact of freedom of choice and trust in government on happiness scores.">
+                <object data="SVGs/scatter_life_expectancy_happiness.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/scatter_life_expectancy_happiness.svg" alt="Factors SVG 4" width="200" height="200">
+                </object>
+                <p class="svg-text">Health (Life Expectancy)</p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Top 3 Happiest Countries</h2>
+        <p>Detailed profile of the world's happiest nations and what makes them exceptional.</p>
+        
+        <div class="top-countries">
+            <div class="country-card" data-id="top1" data-title="First Place Country" data-desc="Detailed analysis of the happiest country in the world and the factors contributing to its success.">
+                <object data="SVGs/line_denmark.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/line_denmark.svg" alt="Country 1 SVG" width="200" height="200">
+                </object>
+                <p class="svg-text">Denmark</p>
+            </div>
+            
+            <div class="country-card" data-id="top2" data-title="Second Place Country" data-desc="Profile of the second happiest country and key factors behind its high ranking.">
+                <object data="SVGs/line_iceland.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/line_iceland.svg" alt="Country 2 SVG" width="200" height="200">
+                </object>
+                <p class="svg-text">Iceland</p>
+            </div>
+            
+            <div class="country-card" data-id="top3" data-title="Third Place Country" data-desc="Analysis of the third happiest country and what distinguishes it from other nations.">
+                <object data="SVGs/line_norway.svg" type="image/svg+xml" width="200" height="200">
+                    <img src="SVGs/line_norway.svg" alt="Country 3 SVG" width="200" height="200">
+                </object>
+                <p class="svg-text">Norway</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="poll-section">
+        <h2 style="color: white; border-color: white;">Happiness Survey</h2>
+        <p>Share your thoughts on what contributes to happiness in your country.</p>
+        
+        <div class="poll-form">
+            <form id="happinessPoll">
+                <div class="form-group">
+                    <label for="country">Your Country:</label>
+                    <select id="country" name="country" required>
+                        <option value="">Select your country</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+                        <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Ivory Coast">Ivory Coast</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kosovo">Kosovo</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Northern Cyprus">Northern Cyprus</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palestinian Territories">Palestinian Territories</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Swaziland">Swaziland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age Group:</label>
+                    <select id="age" name="age" required>
+                        <option value="">Select your age group</option>
+                        <option value="18-24">18-24</option>
+                        <option value="25-34">25-34</option>
+                        <option value="35-44">35-44</option>
+                        <option value="45-54">45-54</option>
+                        <option value="55-64">55-64</option>
+                        <option value="65+">65+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>On a scale of 1-10, how would you rate your personal happiness?</label>
+                    <div class="rating-group">
+                        <div class="rating-option">
+                            <input type="radio" id="rate1" name="happiness" value="1">
+                            <label for="rate1">1</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate2" name="happiness" value="2">
+                            <label for="rate2">2</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate3" name="happiness" value="3">
+                            <label for="rate3">3</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate4" name="happiness" value="4">
+                            <label for="rate4">4</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate5" name="happiness" value="5">
+                            <label for="rate5">5</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate6" name="happiness" value="6">
+                            <label for="rate6">6</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate7" name="happiness" value="7">
+                            <label for="rate7">7</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate8" name="happiness" value="8">
+                            <label for="rate8">8</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate9" name="happiness" value="9">
+                            <label for="rate9">9</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rate10" name="happiness" value="10">
+                            <label for="rate10">10</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Which factors do you believe contribute most to happiness? (Select all that apply)</label>
+                    <div>
+                        <label for="factor3">Freedom</label>
+                        <input type="checkbox" id="factor3" name="factors" value="Health">
+                    </div>
+                    <div>
+                        <label for="factor4">Economy (GDP per Capita)</label>
+                        <input type="checkbox" id="factor4" name="factors" value="Freedom">
+                    </div>
+                    <div>
+                        <label for="factor5">Generosity</label>
+                        <input type="checkbox" id="factor5" name="factors" value="Trust">
+                    </div>
+                    <div>
+                        <label for="factor6">Health (Life Expectancy)</label>
+                        <input type="checkbox" id="factor6" name="factors" value="Generosity">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comments">Additional Comments:</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (optional for research updates):</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Survey</button>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <h2>Reccomendations</h2>
+        <p>Select a country to compare its happiness scores across different years.
+            <br>
+           According to the scatterplots, Generosity has no correlation with Happiness Score. Thus, it is not a factor that contributes to happiness. Because of this, the data for Generosity is not included in the comparison tool. 
+
+        </p>
+        
+        <div class="comparison-tool">
+            <div class="form-group">
+                <label for="comparisonCountry">Select Country:</label>
+                <select id="comparisonCountry" name="comparisonCountry" required>
+                    <option value="">Select your country</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="Albania">Albania</option>
+                    <option value="Algeria">Algeria</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Armenia">Armenia</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Azerbaijan">Azerbaijan</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Belarus">Belarus</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Benin">Benin</option>
+                    <option value="Bhutan">Bhutan</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                    <option value="Botswana">Botswana</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Burkina Faso">Burkina Faso</option>
+                    <option value="Burundi">Burundi</option>
+                    <option value="Cambodia">Cambodia</option>
+                    <option value="Cameroon">Cameroon</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Central African Republic">Central African Republic</option>
+                    <option value="Chad">Chad</option>
+                    <option value="Chile">Chile</option>
+                    <option value="China">China</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Comoros">Comoros</option>
+                    <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+                    <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="Croatia">Croatia</option>
+                    <option value="Cyprus">Cyprus</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Dominican Republic">Dominican Republic</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="El Salvador">El Salvador</option>
+                    <option value="Estonia">Estonia</option>
+                    <option value="Ethiopia">Ethiopia</option>
+                    <option value="Finland">Finland</option>
+                    <option value="France">France</option>
+                    <option value="Gabon">Gabon</option>
+                    <option value="Gambia">Gambia</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Guatemala">Guatemala</option>
+                    <option value="Guinea">Guinea</option>
+                    <option value="Haiti">Haiti</option>
+                    <option value="Honduras">Honduras</option>
+                    <option value="Hong Kong">Hong Kong</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Iceland">Iceland</option>
+                    <option value="India">India</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Iran">Iran</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="Ireland">Ireland</option>
+                    <option value="Israel">Israel</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Ivory Coast">Ivory Coast</option>
+                    <option value="Jamaica">Jamaica</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Kazakhstan">Kazakhstan</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Kosovo">Kosovo</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                    <option value="Laos">Laos</option>
+                    <option value="Latvia">Latvia</option>
+                    <option value="Lebanon">Lebanon</option>
+                    <option value="Lesotho">Lesotho</option>
+                    <option value="Liberia">Liberia</option>
+                    <option value="Libya">Libya</option>
+                    <option value="Lithuania">Lithuania</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Madagascar">Madagascar</option>
+                    <option value="Malawi">Malawi</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Mali">Mali</option>
+                    <option value="Malta">Malta</option>
+                    <option value="Mauritania">Mauritania</option>
+                    <option value="Mauritius">Mauritius</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Moldova">Moldova</option>
+                    <option value="Mongolia">Mongolia</option>
+                    <option value="Montenegro">Montenegro</option>
+                    <option value="Morocco">Morocco</option>
+                    <option value="Mozambique">Mozambique</option>
+                    <option value="Myanmar">Myanmar</option>
+                    <option value="Namibia">Namibia</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Nicaragua">Nicaragua</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="North Macedonia">North Macedonia</option>
+                    <option value="Northern Cyprus">Northern Cyprus</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Palestinian Territories">Palestinian Territories</option>
+                    <option value="Panama">Panama</option>
+                    <option value="Paraguay">Paraguay</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Rwanda">Rwanda</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Senegal">Senegal</option>
+                    <option value="Serbia">Serbia</option>
+                    <option value="Sierra Leone">Sierra Leone</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Slovakia">Slovakia</option>
+                    <option value="Slovenia">Slovenia</option>
+                    <option value="Somalia">Somalia</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="South Sudan">South Sudan</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Swaziland">Swaziland</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Syria">Syria</option>
+                    <option value="Taiwan">Taiwan</option>
+                    <option value="Tajikistan">Tajikistan</option>
+                    <option value="Tanzania">Tanzania</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                    <option value="Tunisia">Tunisia</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="Turkmenistan">Turkmenistan</option>
+                    <option value="Uganda">Uganda</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Uzbekistan">Uzbekistan</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Yemen">Yemen</option>
+                    <option value="Zambia">Zambia</option>
+                    <option value="Zimbabwe">Zimbabwe</option>
+                </select>
+            </div>
+            <button id="compareButton" class="submit-btn">Compare</button>
+        </div>
+        
+        <div id="comparisonResults" class="comparison-results">
+            <!-- Comparison results will be displayed here -->
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Data Analytics</h2>
+        <p><b>Analysis of the stored survey data to identify trends and patterns.</b></p>
+        <p id="numForms">Number of forms submitted: 0</p>
+        <div class="data-grid">
+            <div class="data-card" data-id="happinessPieChart" data-title="Happiness Distribution" data-desc="Distribution of happiness scores.">
+                <canvas id="happinessPieChart"></canvas>
+            </div>
+            <div class="data-card" data-id="agePieChart" data-title="Age Distribution" data-desc="Distribution of survey responses by age group.">
+                <canvas id="agePieChart"></canvas>
+            </div>
+            <div class="data-card" data-id="factorsPieChart" data-title="Factors Distribution" data-desc="Distribution of factors contributing to happiness.">
+                <canvas id="factorsPieChart"></canvas>
+            </div>
+        </div>
+        <button id="resetDatabaseButton">Reset Database</button>
+
+    </section>
+
+    <section>
+        <h2>Stored Data</h2>
+        <table id="storedDataTable">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Age Group</th>
+                    <th>Happiness Rating</th>
+                    <th>Factors</th>
+                    <th>Comments</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="storedData">
+                <!-- Data rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="assets/js/reccomendation.js"></script>
+    <script src="assets/js/form.js"></script>
+
+
+    <!-- Modal for enlarged SVG view -->
+    <div id="svgModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <object id="modalSvg" data="" type="image/svg+xml" class="enlarged-img">
+                <img id="modalFallbackImg" src="" alt="Enlarged view" class="enlarged-img">
+            </object>
+        </div>
+    </div>
+    
+    <footer>
+        <p>World Happiness Research Project © 2025</p>
+        <p>Data sources: World Happiness Report (2015-2019)</p>
+    </footer>
+
+</body>
+</html>
