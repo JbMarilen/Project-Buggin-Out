@@ -1,4 +1,3 @@
-import os
 import csv
 import pygal
 
@@ -7,7 +6,7 @@ def extract_country_data(files, country_name):
     Extracts data for a specific country from multiple CSV files.
     
     Args:
-        file_paths (list): List of file paths to CSV files.
+        files (dict): Dictionary with years as keys and file paths as values.
         country_name (str): Name of the country to extract data for.
     
     Returns:
@@ -16,10 +15,7 @@ def extract_country_data(files, country_name):
     country_data = {}
     columns = set()
     
-    for file_path in files:
-        # Extract the year from the file name
-        year = os.path.splitext(os.path.basename(file_path))[0].split('_')[-1]
-        
+    for year, file_path in files.items():
         with open(file_path, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
@@ -56,13 +52,13 @@ def create_line_graph(data, columns, country_name):
     line_chart.render_to_file(file_name)
 
 
-files = [
-    'C:\\comp sci\\Artefact\\CSVs\\new_2015.csv',
-    'C:\\comp sci\\Artefact\\CSVs\\new_2016.csv',
-    'C:\\comp sci\\Artefact\\CSVs\\new_2017.csv',
-    'C:\\comp sci\\Artefact\\CSVs\\new_2018.csv',
-    'C:\\comp sci\\Artefact\\CSVs\\new_2019.csv'
-]
+files = {
+    "2015": 'C:\\comp sci\\Artefact\\CSVs\\new_2015.csv',
+    "2016": 'C:\\comp sci\\Artefact\\CSVs\\new_2016.csv',
+    "2017": 'C:\\comp sci\\Artefact\\CSVs\\new_2017.csv',
+    "2018": 'C:\\comp sci\\Artefact\\CSVs\\new_2018.csv',
+    "2019": 'C:\\comp sci\\Artefact\\CSVs\\new_2019.csv'
+}
 
 # Extract and create graphs for Denmark, Iceland, and Norway
 for country in ['Denmark', 'Iceland', 'Norway']:

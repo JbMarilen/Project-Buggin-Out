@@ -2,9 +2,14 @@ import pandas as pd
 import pygal
 from pygal.style import LightColorizedStyle
 
-# List of dataset filenames
-years = [2015, 2016, 2017, 2018, 2019]
-files = [f"C:\\comp sci\\Artefact\\CSVs\\new_{year}.csv" for year in years]
+# Dictionary of dataset filenames
+files = {
+    "2015": 'C:\\comp sci\\Artefact\\CSVs\\new_2015.csv',
+    "2016": 'C:\\comp sci\\Artefact\\CSVs\\new_2016.csv',
+    "2017": 'C:\\comp sci\\Artefact\\CSVs\\new_2017.csv',
+    "2018": 'C:\\comp sci\\Artefact\\CSVs\\new_2018.csv',
+    "2019": 'C:\\comp sci\\Artefact\\CSVs\\new_2019.csv'
+}
 
 # Factors to plot against Happiness Score
 factors = {
@@ -20,7 +25,7 @@ for factor, output_file in factors.items():
                              title=f"{factor} vs. Happiness Score (2015-2019)",
                              x_title=factor, y_title="Happiness Score")
         
-    for year, file_path in zip(years, files):
+    for year, file_path in files.items():
         df = pd.read_csv(file_path)  # Load dataset
         scatter_plot.add(f"{year}", [(row[factor], row["Happiness Score"]) for _, row in df.iterrows()])
 

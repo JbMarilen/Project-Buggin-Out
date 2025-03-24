@@ -1,5 +1,8 @@
 // Initialize the PouchDB database
-const db = new PouchDB('happiness_survey');
+let db = new PouchDB('happiness_survey');
+
+// Variables to hold chart instances
+let happinessChart, ageChart, factorsChart;
 
 // Call functions to display data, generate charts, and update form count
 showData();
@@ -30,7 +33,6 @@ document.getElementById('happinessPoll').addEventListener('submit', function(eve
     }).then(function() {
         console.log('Data saved successfully');
         showData(); // Refresh data display
-        updateCharts(); // Update charts without full refresh
         document.getElementById('happinessPoll').reset(); // Reset form
         document.getElementById('storedDataTable').scrollIntoView({ behavior: 'smooth' }); // Scroll to data table
     }).catch(function(error) {
@@ -68,7 +70,6 @@ function showData() {
     });
 }
 
-
 // Function to generate charts
 function generateCharts() {
     db.allDocs({include_docs: true, descending: true }).then(function(result) {
@@ -80,9 +81,9 @@ function generateCharts() {
         const factorsData = data.flatMap(row => row.factors);
 
         // Create pie charts
-        createPieChart('happinessPieChart', 'Happiness Distribution', happinessData);
-        createPieChart('agePieChart', 'Age Distribution', ageData);
-        createPieChart('factorsPieChart', 'Factors Distribution', factorsData);
+        createPieChart('happinessPieChart', 'Happiness Distribution', happinessData, happinessChart);
+        createPieChart('agePieChart', 'Age Distribution', ageData, ageChart);
+        createPieChart('factorsPieChart', 'Factors Distribution', factorsData, factorsChart);
         
     }).catch(function(error) {
         console.log('Error fetching data:', error);
@@ -90,14 +91,20 @@ function generateCharts() {
 }
 
 // Function to create a pie chart
-function createPieChart(chartId, title, data) {
+function createPieChart(chartId, title, data, chartInstance) {
     const ctx = document.getElementById(chartId).getContext('2d');
     const counts = data.reduce((acc, value) => {
         acc[value] = (acc[value] || 0) + 1;
         return acc;
     }, {});
 
-    new Chart(ctx, {
+    // Destroy existing chart instance if it exists
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    // Create new chart instance
+    chartInstance = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: Object.keys(counts),
@@ -123,6 +130,15 @@ function createPieChart(chartId, title, data) {
             }
         }
     });
+
+    // Update the chart instance variable
+    if (chartId === 'happinessPieChart') {
+        happinessChart = chartInstance;
+    } else if (chartId === 'agePieChart') {
+        ageChart = chartInstance;
+    } else if (chartId === 'factorsPieChart') {
+        factorsChart = chartInstance;
+    }
 }
 
 // Function to update the form count display
@@ -134,35 +150,24 @@ function updateFormCount() {
     });
 }
 
-// Function to update charts without full refresh
-function updateCharts() {
-    db.allDocs({include_docs: true, descending: true }).then(function(result) {
-        const data = result.rows.map(row => row.doc);
+// Observe changes in the table and update charts and form count
+const observer = new MutationObserver(() => {
+    generateCharts();
+    updateFormCount();
+});
 
-        // Extract data for charts
-        const happinessData = data.map(row => row.happiness);
-        const ageData = data.map(row => row.age);
-        const factorsData = data.flatMap(row => row.factors);
+observer.observe(document.getElementById('storedData'), { childList: true });
 
-        // Update pie charts
-        updatePieChart('happinessPieChart', happinessData);
-        updatePieChart('agePieChart', ageData);
-        updatePieChart('factorsPieChart', factorsData);
-        
+// Add event listener for reset database button
+document.getElementById('resetDatabaseButton').addEventListener('click', function() {
+    db.destroy().then(function() {
+        console.log('Database reset successfully');
+        // Reinitialize the database
+        db = new PouchDB('happiness_survey');
+        showData();
+        generateCharts();
+        updateFormCount();
     }).catch(function(error) {
-        console.log('Error fetching data:', error);
+        console.log('Error resetting database:', error);
     });
-}
-
-// Function to update a pie chart
-function updatePieChart(chartId, data) {
-    const chart = Chart.getChart(chartId); 
-    const counts = data.reduce((acc, value) => {
-        acc[value] = (acc[value] || 0) + 1;
-        return acc;
-    }, {});
-
-    chart.data.labels = Object.keys(counts);
-    chart.data.datasets[0].data = Object.values(counts);
-    chart.update();
-}
+});
