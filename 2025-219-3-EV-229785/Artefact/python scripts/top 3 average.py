@@ -1,3 +1,4 @@
+# This script satisfies Basic Requirement 1b: Collect and prepare the data.
 import pandas as pd
 from collections import Counter
 

@@ -1,3 +1,4 @@
+# This script satisfies Basic Requirement 2: Data analysis and visualisation.
 import csv
 import pygal
 

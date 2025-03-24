@@ -1,8 +1,8 @@
+# This script satisfies Basic Requirement 2: Data analysis and visualisation.
 import pandas as pd
 import pygal
 from pygal.style import LightColorizedStyle
 
-# Dictionary of dataset filenames
 files = {
     "2015": 'Artefact/CSVs/new_2015.csv',
     "2016": 'Artefact/CSVs/new_2016.csv',
@@ -11,7 +11,6 @@ files = {
     "2019": 'Artefact/CSVs/new_2019.csv'
 }
 
-# Factors to plot against Happiness Score
 factors = {
     "Economy (GDP per Capita)": "scatter_gdp_happiness.svg",
     "Health (Life Expectancy)": "scatter_life_expectancy_happiness.svg",

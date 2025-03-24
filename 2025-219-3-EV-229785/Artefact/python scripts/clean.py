@@ -1,4 +1,4 @@
-# This script satisfies Basic Requirement 1: Collect and prepare the data.
+# This script satisfies Basic Requirement 1b: Collect and prepare the data.
 import pandas as pd
 
 file_2015 = "Artefact/CSVs/2015.csv"

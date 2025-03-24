@@ -1,3 +1,4 @@
+# This script satisfies Basic Requirement 2: Data analysis and visualisation.
 import pandas as pd
 import pygal
 from pygal.style import DefaultStyle
