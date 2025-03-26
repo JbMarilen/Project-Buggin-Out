@@ -32,7 +32,7 @@ document.getElementById('happinessPoll').addEventListener('submit', function(eve
     }).then(function() {
         console.log('Data saved successfully');
         showData(); // refresh data display
-        document.getElementById('ohappinessPll').reset(); // reset form
+        document.getElementById('happinessPoll').reset(); // reset form
         document.getElementById('storedDataTable').scrollIntoView({ behavior: 'smooth' }); // scroll to data table
     }).catch(function(error) {
         console.log('Error saving data:', error);
