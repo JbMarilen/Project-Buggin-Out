@@ -18,15 +18,14 @@ factors = {
     "Generosity": "scatter_generosity_happiness.svg"
 }
 
-# Generate scatter plots for each factor    
+#  scatter plots for each factor    
 for factor, output_file in factors.items():
     scatter_plot = pygal.XY(stroke=False, style=LightColorizedStyle,
                              title=f"{factor} vs. Happiness Score (2015-2019)",
                              x_title=factor, y_title="Happiness Score")
         
     for year, file_path in files.items():
-        df = pd.read_csv(file_path)  # Load dataset
+        df = pd.read_csv(file_path) 
         scatter_plot.add(f"{year}", [(row[factor], row["Happiness Score"]) for _, row in df.iterrows()])
 
-    # Render the chart to file
     scatter_plot.render_to_file(f"Artefact/CSVs/{output_file}")

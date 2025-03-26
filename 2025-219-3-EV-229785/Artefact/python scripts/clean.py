@@ -16,7 +16,7 @@ output_2019 = "Artefact/CSVs/new_2019.csv"
 # remove columns function
 def remove_columns(input_file, output_file, columns_to_remove):
     df = pd.read_csv(input_file) # read csv to dataframe
-    df = df.drop(columns=[col for col in columns_to_remove if col in df.columns]) # removes columns from dataframe if it exists
+    df = df.drop(columns=columns_to_remove, errors='ignore') # removes columns from dataframe if it exists
     # saves the updated dataframe to the output file
     df.to_csv(output_file, index=False)
 
@@ -24,25 +24,25 @@ def process_file(input_file, output_file, year):
     df = pd.read_csv(input_file) # read csv to dataframe
     if year == 2017:
         # rename
-        df.rename(columns={
+        df = df.rename(columns={
             "Happiness.Rank": "Happiness Rank", 
             "Happiness.Score": "Happiness Score", 
             "Economy..GDP.per.Capita.": "Economy (GDP per Capita)", 
             "Health..Life.Expectancy.": "Health (Life Expectancy)"
-        }, inplace=True) 
+        }) 
         # remove columns
-        df.drop(columns=["Whisker.high", "Whisker.low", "Trust..Government.Corruption.", "Dystopia.Residual", "Family"], errors='ignore', inplace=True)
+        df= df.drop(columns=["Whisker.high", "Whisker.low", "Trust..Government.Corruption.", "Dystopia.Residual", "Family"], errors='ignore')
     elif year == 2018 or year == 2019:
         # rename
-        df.rename(columns={
+        df = df.rename(columns={
             "Overall rank": "Happiness Rank", 
             "Country or region": "Country", 
             "Score": "Happiness Score", 
             "GDP per capita": "Economy (GDP per Capita)", 
             "Healthy life expectancy": "Health (Life Expectancy)", 
             "Freedom to make life choices": "Freedom"
-        }, inplace=True)
-        df.drop(columns=["Social support", "Perceptions of corruption"], errors='ignore', inplace=True) # remove columns
+        })
+        df = df.drop(columns=["Social support", "Perceptions of corruption"], errors='ignore') # remove columns
     df.to_csv(output_file, index=False) # save updated dataframe to output file
 
 result_2015 = remove_columns(file_2015, output_2015, ["Region", "Standard Error", "Family", "Dystopia Residual", "Trust (Government Corruption)"])

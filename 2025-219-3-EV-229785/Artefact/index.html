@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="assets/js/fullscreen.js" ></script>
 </head>
 <body>
     <header>
@@ -20,39 +19,12 @@
         <p>Global rankings of countries based on their happiness scores.</p>
         
         <div class="data-grid">
-            <div class="data-card" data-id="leaderboard1" data-title="Top 10 Countries Ranking" data-desc="Visual representation of the top 10 happiest countries according to the World Happiness Report.">
-                <object data="SVGs/happiness_leaderboard_2015.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/happiness_leaderboard_2015.svg" alt="Happiness Ranking SVG 1" width="200" height="200">
-                </object>
-                <p class="svg-text">2015 Leaderboard</p>
-            </div>
-            
-            <div class="data-card" data-id="leaderboard2" data-title="Regional Comparison" data-desc="Comparison of happiness scores across different geographical regions of the world.">
-                <object data="SVGs/happiness_leaderboard_2016.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/happiness_leaderboard_2016.svg" alt="Happiness Ranking SVG 2" width="200" height="200">
-                </object>
-                <p class="svg-text">2016 Leaderboard</p>
-            </div>
-            
-            <div class="data-card" data-id="leaderboard3" data-title="Year-over-Year Changes" data-desc="Analysis of how country rankings have changed from 2015 to 2019.">
-                <object data="SVGs/happiness_leaderboard_2017.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/happiness_leaderboard_2017.svg" alt="Happiness Ranking SVG 3" width="200" height="200">
-                </object>
-                <p class="svg-text">2017 Leaderboard</p>
-            </div>
-            
-            <div class="data-card" data-id="leaderboard4" data-title="Score Distribution" data-desc="Distribution of happiness scores across all countries in the report.">
-                <object data="SVGs/happiness_leaderboard_2018.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/happiness_leaderboard_2018.svg" alt="Happiness Ranking SVG 4" width="200" height="200">
-                </object>
-                <p class="svg-text">2018 Leaderboard</p>
-            </div>
-            
-            <div class="data-card" data-id="leaderboard5" data-title="Continental Breakdown" data-desc="Comparison of happiness scores across different continents.">
-                <object data="SVGs/happiness_leaderboard_2019.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/happiness_leaderboard_2019.svg" alt="Happiness Ranking SVG 5" width="200" height="200">
-                </object>
-                <p class="svg-text">2019 Leaderboard</p>
+            <div class="visual">
+                <object data="SVGs/happiness_leaderboard_2015.svg" type="image/svg+xml"></object>
+                <object data="SVGs/happiness_leaderboard_2016.svg" type="image/svg+xml"></object>
+                <object data="SVGs/happiness_leaderboard_2017.svg" type="image/svg+xml"></object>
+                <object data="SVGs/happiness_leaderboard_2018.svg" type="image/svg+xml"></object>
+                <object data="SVGs/happiness_leaderboard_2019.svg" type="image/svg+xml"></object>
             </div>
         </div>
     </section>
@@ -62,39 +34,12 @@
         <p>Comparison between the most and least happy nations in the world.</p>
         
         <div class="data-grid">
-            <div class="data-card" data-id="comparison1" data-title="Score Gap Analysis" data-desc="Analysis of the gap between the happiest and least happy countries.">
-                <object data="SVGs/histogram_2015.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/histogram_2015.svg" alt="Comparison SVG 1" width="200" height="200">
-                </object>
-                <p class="svg-text">Switzerland Vs. Togo (2015)</p>
-            </div>
-            
-            <div class="data-card" data-id="comparison2" data-title="Factor Comparison" data-desc="Comparison of different happiness factors between top and bottom ranked countries.">
-                <object data="SVGs/histogram_2016.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/histogram_2016.svg" alt="Comparison SVG 2" width="200" height="200">
-                </object>
-                <p class="svg-text">Denmark Vs. Burundi (2016)</p>
-            </div>
-            
-            <div class="data-card" data-id="comparison3" data-title="Quality of Life Metrics" data-desc="Comparison of quality of life indicators between happiest and least happy nations.">
-                <object data="SVGs/histogram_2017.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/histogram_2017.svg" alt="Comparison SVG 3" width="200" height="200">
-                </object>
-                <p class="svg-text">Norway Vs. Central Africa Republic (2017)</p>
-            </div>
-            
-            <div class="data-card" data-id="comparison4" data-title="Economic Indicators" data-desc="Comparison of economic factors between happiest and least happy countries.">
-                <object data="SVGs/histogram_2018.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/histogram_2018.svg" alt="Comparison SVG 4" width="200" height="200">
-                </object>
-                <p class="svg-text">Finland Vs. Burundi (2018)</p>
-            </div>
-            
-            <div class="data-card" data-id="comparison5" data-title="Cultural Indicators" data-desc="Analysis of cultural factors that may influence happiness scores.">
-                <object data="SVGs/histogram_2019.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/histogram_2019.svg" alt="Comparison SVG 5" width="200" height="200">
-                </object>
-                <p class="svg-text">Finland Vs. South Sudan (2019)</p>
+            <div class="visual">
+                <object data="SVGs/histogram_2015.svg" type="image/svg+xml"></object>
+                <object data="SVGs/histogram_2016.svg" type="image/svg+xml"></object>
+                <object data="SVGs/histogram_2017.svg" type="image/svg+xml"></object>
+                <object data="SVGs/histogram_2018.svg" type="image/svg+xml"></object>
+                <object data="SVGs/histogram_2019.svg" type="image/svg+xml"></object>
             </div>
         </div>
     </section>
@@ -104,61 +49,11 @@
         <p>Analysis of how different factors contribute to overall happiness scores.</p>
         
         <div class="data-grid">
-            <div class="data-card" data-id="factors1" data-title="GDP per Capita Impact" data-desc="Correlation between GDP per capita and happiness scores across countries.">
-                <object data="SVGs/scatter_freedom_happiness.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/scatter_freedom_happiness.svg" alt="Factors SVG 1" width="200" height="200">
-                </object>
-                <p class="svg-text">Freedom</p>
-            </div>
-            
-            <div class="data-card" data-id="factors2" data-title="Social Support Correlation" data-desc="How social support networks correlate with overall happiness scores.">
-                <object data="SVGs/scatter_gdp_happiness.svg"  type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/scatter_gdp_happiness.svg"  alt="Factors SVG 2" width="200" height="200">
-                </object>
-                <p class="svg-text">Economy (GDP per Capita)</p>
-            </div>
-            
-            <div class="data-card" data-id="factors3" data-title="Health & Life Expectancy" data-desc="Relationship between health metrics, life expectancy, and happiness scores.">
-                <object data="SVGs/scatter_generosity_happiness.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/scatter_generosity_happiness.svg" alt="Factors SVG 3" width="200" height="200">
-                </object>
-                <p class="svg-text">Generosity</p>
-            </div>
-            
-            <div class="data-card" data-id="factors4" data-title="Freedom & Trust Factors" data-desc="Impact of freedom of choice and trust in government on happiness scores.">
-                <object data="SVGs/scatter_life_expectancy_happiness.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/scatter_life_expectancy_happiness.svg" alt="Factors SVG 4" width="200" height="200">
-                </object>
-                <p class="svg-text">Health (Life Expectancy)</p>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <h2>Top 3 Happiest Countries</h2>
-        <p>Detailed profile of the world's happiest nations and what makes them exceptional.</p>
-        
-        <div class="top-countries">
-            <div class="country-card" data-id="top1" data-title="First Place Country" data-desc="Detailed analysis of the happiest country in the world and the factors contributing to its success.">
-                <object data="SVGs/line_denmark.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/line_denmark.svg" alt="Country 1 SVG" width="200" height="200">
-                </object>
-                <p class="svg-text">Denmark</p>
-            </div>
-            
-            <div class="country-card" data-id="top2" data-title="Second Place Country" data-desc="Profile of the second happiest country and key factors behind its high ranking.">
-                <object data="SVGs/line_iceland.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/line_iceland.svg" alt="Country 2 SVG" width="200" height="200">
-                </object>
-                <p class="svg-text">Iceland</p>
-            </div>
-            
-            <div class="country-card" data-id="top3" data-title="Third Place Country" data-desc="Analysis of the third happiest country and what distinguishes it from other nations.">
-                <object data="SVGs/line_norway.svg" type="image/svg+xml" width="200" height="200">
-                    <img src="SVGs/line_norway.svg" alt="Country 3 SVG" width="200" height="200">
-                </object>
-                <p class="svg-text">Norway</p>
-            </div>
+            <div class="visual">
+                <object data="SVGs/scatter_freedom_happiness.svg" type="image/svg+xml"></object>
+                <object data="SVGs/scatter_gdp_happiness.svg" type="image/svg+xml"></object>
+                <object data="SVGs/scatter_generosity_happiness.svg" type="image/svg+xml"></object>
+                <object data="SVGs/scatter_life_expectancy_happiness.svg" type="image/svg+xml"></object>
         </div>
     </section>
 
@@ -620,7 +515,6 @@
                 <canvas id="factorsPieChart"></canvas>
             </div>
         </div>
-        <button id="resetDatabaseButton">Reset Database</button>
 
     </section>
 
@@ -645,17 +539,6 @@
 
     <script src="assets/js/reccomendation.js"></script>
     <script src="assets/js/form.js"></script>
-
-
-    <!-- Modal for enlarged SVG view -->
-    <div id="svgModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <object id="modalSvg" data="" type="image/svg+xml" class="enlarged-img">
-                <img id="modalFallbackImg" src="" alt="Enlarged view" class="enlarged-img">
-            </object>
-        </div>
-    </div>
     
     <footer>
         <p>World Happiness Research Project © 2025</p>
